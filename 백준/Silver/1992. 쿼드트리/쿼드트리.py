@@ -17,7 +17,7 @@ def Quard_Tree(x,y,n):
                 Quard_Tree(x+n//2, y, n//2)
                 Quard_Tree(x+n//2, y+n//2, n//2)
                 print(")",end ="")
-                return 0
+                return
     print(result, end ="")
     
 Quard_Tree(0,0,N)
