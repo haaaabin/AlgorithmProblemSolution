@@ -1,42 +1,40 @@
-# 정점, 간선 갯수 받아옴
-v, e = map(int,input().split())
+import heapq
+import sys
 
-#부모 노드를 자기 자신으로 초기화
-parent = [i for i in range(v+1)]    
+v,e = map(int,sys.stdin.readline().split())
 
-graph = []
+graph = [[] for _ in range(v+1)]
+
+#인접 리스트
 for _ in range(e):
-    a,b,c = map(int,input().split())
-    graph.append((a,b,c))   #튜플로 묶어서 추가
-
-#가중치 오름차순으로 정렬
-graph.sort(key = lambda x:x[2])
-
-# find
-def find(x):
-    #만약 x의 부모가 자기자신이 아니라면 재귀를 통해 루트 노드를 찾는다.
-    if parent[x] != x:
-        parent[x] = find(parent[x])
-    #자기 자신이면 본인이 루트노드인 경우이므로 그대로 출력한다.
-    return parent[x]
+    u,vertex,w = map(int,sys.stdin.readline().split())
+    graph[u].append([w,vertex])  
+    graph[vertex].append([w,u])
     
-# union
-def union(a,b):
-    #a와 b의 루트노드 찾기
-    a = find(a)
-    b = find(b)
-    
-    if a < b:
-        parent[b] = a
-    else:
-        parent[a] = b
+#방문 처리
+visited = [False] * (v+1)
 
-#가중치 합
-total_cost = 0 
+def prim(x):
+    #시작 노드 방문 체크
+    visited[x] = True
+    #가중치가 최소인 간선을 선택하기 위한 최소힙(우선순위큐)
+    heap = graph[x]
+    #우선순위큐로 만듬
+    heapq.heapify(heap)
+    total_cost = 0
 
-for u,v,w in graph:
-    if find(u) != find(v):
-        union(u,v)
-        total_cost += w
+    while heap:
+        weight, n = heapq.heappop(heap)
         
-print(total_cost)
+        if not visited[n]:
+            #방문하지 않은 노드인 경우 방문처리
+            visited[n] = True
+            total_cost += weight
+            
+            for w,u in graph[n]:
+                if not visited[u]:
+                    #아직 방문하지 않은 노드만 최소힙에 넣음
+                    heapq.heappush(heap,[w,u])
+    return total_cost
+
+print(prim(1))
