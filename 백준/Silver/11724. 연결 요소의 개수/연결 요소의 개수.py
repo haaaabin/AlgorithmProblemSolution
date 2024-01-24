@@ -1,5 +1,6 @@
 from collections import deque
 import sys
+sys.setrecursionlimit(10**9)
 
 N,M = map(int, sys.stdin.readline().split())
 
@@ -12,24 +13,16 @@ for i in range(M):
     
 visited = [False] * (N+1)
 
-
-def bfs(x):
-    q =deque()
-    q.append(x)
-
+def dfs(x):
     visited[x] = True
-    
-    while q:
-        a = q.popleft()       
-        for i in graph[a]:
-            if not visited[i]:
-                q.append(i)
-                visited[i]= True
-            
+    for i in graph[x]:
+        if not visited[i]:
+            dfs(i)
+
 count = 0
 for i in range(1,N+1):
     if not visited[i]:
-        bfs(i)          #bfs를 실행하면 count + 1 -> bfs를 실행하는 횟수가 연결요소의 개수
+        dfs(i)    
         count += 1
 
 print(count)
