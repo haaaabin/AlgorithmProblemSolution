@@ -7,8 +7,7 @@ num=[]
 
 for i in n:
     sum = 0
-    temp = i.split('+')
-    for j in temp:
+    for j in i.split('+'):
         sum += int(j)
     num.append(sum)
     
