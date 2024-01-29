@@ -1,7 +1,7 @@
 import sys
 input = sys.stdin.readline
 
-n = int(input())
+n = int(input())%47244
 
 tiles = [0] * 1000001
 
