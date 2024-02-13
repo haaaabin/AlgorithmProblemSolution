@@ -11,15 +11,13 @@ for _ in range(t):
     B.sort()
     
     count = 0
-    j = 0
+    start = 0
     
     for i in range(n):
-        while j < m:
-            if A[i] > B[j]:
-                j +=1
-            else:
-                count +=j
+        while True:
+            if start == m or A[i]<=B[start]:
+                count +=start
                 break
-        else:
-            count += m
+            else:
+                start += 1
     print(count)
