@@ -1,6 +1,6 @@
 def solution(age):
     answer = ''
-    alpabet = "abcdefghij"
+    alpabet = ['a','b','c','d','e','f','g','h','i','j']
     for i in str(age):
         answer += alpabet[int(i)]
     return answer
