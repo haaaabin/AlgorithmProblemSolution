@@ -2,10 +2,10 @@ import sys
 from collections import deque
 input = sys.stdin.readline
 
-def bfs(x,y):
-    dx = [1, -1, 0, 0, 1, -1, 1, -1]
-    dy = [0, 0, -1, 1, -1, 1, 1, -1]
+dx = [1, -1, 0, 0, 1, -1, 1, -1]
+dy = [0, 0, -1, 1, -1, 1, 1, -1]
 
+def bfs(x,y):
     q = deque()
     q.append([x,y])
     islands[x][y] = 0
@@ -20,7 +20,6 @@ def bfs(x,y):
             if 0 <= nx < h and 0 <= ny < w and islands[nx][ny] == 1:
                 islands[nx][ny] = 0
                 q.append([nx,ny])
-
 
 while True:
     w,h = map(int,input().split())
