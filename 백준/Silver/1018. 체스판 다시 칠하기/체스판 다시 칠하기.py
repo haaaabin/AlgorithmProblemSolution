@@ -1,27 +1,31 @@
 import sys
 input = sys.stdin.readline
 
-n, m = map(int,input().split())
-chess = [input() for _ in range(n)]
+N, M = map(int, input().split())
 
-w = 'W','B'
-b = 'B','W'
+chess=[]
+result=[]
 
-def check(i,j):
-    result_w = 0
-    result_b = 0
-    for di in range(8):
-        for dj in range(8):
-            ni, nj = i+di , j+dj
-            if chess[ni][nj] != w[(di+dj)%2]:
-                result_w +=1
-            if chess[ni][nj] != b[(di+dj)%2]:
-                result_b +=1
-    return min(result_w,result_b)
+for _ in range(N):
+    chess.append(input())
 
-result = 1000000
-for i in range(n-7):
-    for j in range(m-7):
-        result = min(result, check(i,j))
-
-print(result)
+for i in range(N-7):
+    for j in range(M-7):
+        paint_w = 0
+        paint_b = 0
+        for x in range(i, i+8):
+            for y in range(j, j+8):
+                if (x+y) % 2 == 0:
+                    if chess[x][y] != 'W':
+                        paint_w +=1
+                    else:
+                        paint_b +=1
+                else:
+                    if chess[x][y] != 'B':
+                        paint_w += 1
+                    else:
+                        paint_b += 1
+        result.append(paint_w)
+        result.append(paint_b)
+        
+print(min(result))
