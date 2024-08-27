@@ -1,29 +1,25 @@
 N = int(input())
-Nlist = list(map(int,input().split()))
-
+array1 = list(map(int,input().split()))
 M = int(input())
-Mlist = list(map(int,input().split()))
+array2 = list(map(int,input().split()))
 
-Nlist.sort()
+array1.sort()
 
+def binary_search(target, data):
+    start = 0
+    end = len(data) - 1
 
-def search(target,data):
-    pl = 0
-    pr = N -1
-    
-    while pl <= pr:
-        pc = (pl + pr) //2
-        if target == data[pc]:
+    while start <= end:
+        mid = (start + end) //2
+
+        if target == data[mid]:
             return True
-        elif target > data[pc]:
-            pl = pc + 1
+        elif target > data[mid]:
+            start = mid + 1
         else:
-            pr = pc - 1
-        
+            end = mid - 1
+    
     return False
 
-for m in Mlist:
-    if search(m,Nlist):
-        print(1, end=" ")
-    else:
-        print(0, end =" ")
+for i in array2:
+    print(1, end=" ") if binary_search(i,array1) else print(0, end=" ")
