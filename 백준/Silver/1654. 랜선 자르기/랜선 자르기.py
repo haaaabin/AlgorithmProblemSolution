@@ -1,22 +1,21 @@
-n,k = map(int,input().split())
+import sys
+input = sys.stdin.readline
+K,N = map(int,input().split())
+temp = [int(input()) for _ in range(K)]
 
-lans = []
-for i in range(n):
-    lans.append(int(input()))
+start = 1
+end = max(temp)
 
-s = 1          
-e = max(lans)
+while start <= end:
+    mid = (start + end) //2
+    total = 0
 
-while s <= e:
-    mid = (s+e) //2
-    LAN = 0
+    for i in temp:
+        total += i // mid
     
-    for i in lans:
-        LAN += i // mid
-    
-    if LAN >= k:
-        s = mid + 1
+    if total >= N:
+        start = mid+ 1
     else:
-        e = mid - 1
-        
-print(e)
+        end = mid - 1
+
+print(end)
