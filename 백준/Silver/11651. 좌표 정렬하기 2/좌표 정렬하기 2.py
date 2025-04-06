@@ -3,10 +3,11 @@ input = sys.stdin.readline
 
 N = int(input())
 temp = []
-for i in range(N):
-    temp.append(list(map(int,input().split())))
-    
-temp.sort(key = lambda x : (x[1],x[0]))
+for _ in range(N):
+    x,y = map(int, input().split())
+    temp.append((x,y))
 
-for i in temp:
-    print(i[0], i[1])
+temp.sort(key=lambda x:(x[1],x[0]))
+
+for t in temp:
+    print(t[0], t[1])
