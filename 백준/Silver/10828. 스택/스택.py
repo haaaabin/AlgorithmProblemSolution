@@ -1,27 +1,28 @@
 import sys
+input = sys.stdin.readline
 
-N = int(sys.stdin.readline())
-stacks = []
+n = int(input())
 
-for _ in range(N):
-    command = sys.stdin.readline().split()
+stack = []
+for _ in range(n):
+    command = input().split()
     
-    if command[0] == 'push':
-        stacks.append(command[1])
-    elif command[0] == 'pop':
-        if len(stacks) == 0:
-            print("-1")
+    if command[0] == "push":
+        stack.append(command[1])
+    elif command[0] == "pop":
+        if len(stack) == 0:
+            print(-1)
         else:
-            print(stacks.pop())
-    elif command[0] == 'size':
-        print(len(stacks))
-    elif command[0] == 'empty':
-        if len(stacks) == 0:
-            print("1")
+            print(stack.pop())
+    elif command[0] == "size":
+        print(len(stack))
+    elif command[0] == "empty":
+        if len(stack) == 0:
+            print(1)
         else:
-            print("0")
-    elif command[0] =='top':
-        if len(stacks) == 0:
-            print("-1")
+            print(0)
+    elif command[0] == "top":
+        if len(stack) == 0:
+            print(-1)
         else:
-            print(stacks[-1])
+            print(stack[-1])
